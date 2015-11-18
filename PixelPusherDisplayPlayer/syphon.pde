@@ -3,16 +3,22 @@ import codeanticode.syphon.*;
 
 
 class Syphon {
-  public SyphonClient client;
-  //public PGraphics canvas;
+  private SyphonClient client;
   
   
-  void setting(PApplet parent, String appName, String serverName){
+  public Syphon(PApplet parent) {
+    println("Available Syphon servers:");
+    println(SyphonClient.listServers());
+    this.client = new SyphonClient(parent);
+  }
+  
+  
+  public Syphon(PApplet parent, String appName, String serverName) {
     println("Available Syphon servers:");
     println(SyphonClient.listServers());
     this.client = new SyphonClient(parent, appName, serverName);
   }
-  
+    
   
   boolean available(){
     return this.client.available();

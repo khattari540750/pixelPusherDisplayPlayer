@@ -15,11 +15,10 @@ public void setup() {
   
   // set pixel pusher
   pp = new PixelPusher();
-  pp.setting();
+  pp.setGroupNum(-1);
   
   // set syphon client
-  sy = new Syphon();
-  sy.setting(this, "Processing Syphon");
+  sy = new Syphon(this, "SendFrames" ,"Processing Syphon");
 }
 
 
@@ -36,3 +35,16 @@ public void draw() {
 public void dispose() {
   println("exit.");
 }
+
+
+
+/*
+public void keyPressed(){
+  if(key == 'a'){
+    pp.setGroupNum(2);
+  }
+  if(key == 'b'){
+    pp.setGroupNum(-1);
+  }
+}
+*/

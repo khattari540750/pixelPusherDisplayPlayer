@@ -5,22 +5,34 @@ import com.heroicrobot.dropbit.devices.pixelpusher.Strip;
 
 
 class PixelPusher {
-  public DeviceRegistry registry;
-  public PixelPusherObserver observer;
- 
+  private DeviceRegistry registry;
+  private PixelPusherObserver observer;
+  private int groupNumber;
   
-  void setting() {
+  
+  public PixelPusher() {
     this.registry = new DeviceRegistry();
     this.observer = new PixelPusherObserver();
     this.registry.addObserver(this.observer);
+    this.groupNumber = -1;
   }
   
+  
+  public void setGroupNum(int num) {
+    this.groupNumber = num;
+  }
  
-  void scrape() {  
+ 
+  public void scrape() {  
     loadPixels();
     if(this.observer.hasStrips) {
       this.registry.startPushing();
-      List<Strip> strips = this.registry.getStrips();
+      List<Strip> strips;
+      if(this.groupNumber < 0){
+        strips = this.registry.getStrips();
+      } else {
+        strips = this.registry.getStrips(this.groupNumber);
+      }
 
       if (strips.size() > 0) {
         float xscale = float(width) / float(strips.get(0).getLength());
