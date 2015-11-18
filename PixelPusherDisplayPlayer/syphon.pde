@@ -7,10 +7,10 @@ class Syphon {
   //public PGraphics canvas;
   
   
-  void setting(PApplet parent){
+  void setting(PApplet parent, String appName, String serverName){
     println("Available Syphon servers:");
     println(SyphonClient.listServers());
-    this.client = new SyphonClient(parent);
+    this.client = new SyphonClient(parent, appName, serverName);
   }
   
   

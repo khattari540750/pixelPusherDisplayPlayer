@@ -19,7 +19,7 @@ public void setup() {
   
   // set syphon client
   sy = new Syphon();
-  sy.setting(this);
+  sy.setting(this, "Processing Syphon");
 }
 
 
