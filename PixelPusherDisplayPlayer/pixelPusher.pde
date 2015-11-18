@@ -1,37 +1,64 @@
 import com.heroicrobot.dropbit.registry.*;
 import com.heroicrobot.dropbit.devices.pixelpusher.Pixel;
 import com.heroicrobot.dropbit.devices.pixelpusher.Strip;
+import java.util.*;
 
 
 
 class PixelPusher {
   private DeviceRegistry registry;
   private PixelPusherObserver observer;
-  private int groupNumber;
+  private int groupID;
+  private int groupStripNum;
   
   
   public PixelPusher() {
     this.registry = new DeviceRegistry();
     this.observer = new PixelPusherObserver();
     this.registry.addObserver(this.observer);
-    this.groupNumber = -1;
+    this.groupID = -1;
   }
   
   
-  public void setGroupNum(int num) {
-    this.groupNumber = num;
+  public void setGroupID(int id) {
+    this.groupID = id;
+  }
+  
+  
+  public void setGroupStripNum(int num) {
+    this.groupStripNum = num;
+  }
+  
+  
+  public int getGroupStripNum() {
+    int num = -1;
+    while(num < 0){
+      loadPixels();
+      if(this.observer.hasStrips) {
+        this.registry.startPushing();
+        List<Strip> strips;
+        if(this.groupID < 0){
+          strips = this.registry.getStrips();
+          num = strips.size();
+        } else {
+          strips = this.registry.getStrips(this.groupID);
+          num = strips.size();
+        }
+      }
+    }
+    return num;
   }
  
- 
+
   public void scrape() {  
     loadPixels();
     if(this.observer.hasStrips) {
       this.registry.startPushing();
       List<Strip> strips;
-      if(this.groupNumber < 0){
+      if(this.groupID < 0){
         strips = this.registry.getStrips();
       } else {
-        strips = this.registry.getStrips(this.groupNumber);
+        strips = this.registry.getStrips(this.groupID);
       }
 
       if (strips.size() > 0) {
@@ -49,7 +76,7 @@ class PixelPusher {
         }
       }
     }
-  }
+  } 
 };
 
 
