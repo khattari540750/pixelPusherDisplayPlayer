@@ -1,0 +1,22 @@
+# Network related options
+
+# ether, netmask and gateway:
+ether=192.168.11.30
+netmask=255.255.255.0
+gateway=192.168.11.1
+
+# group:
+group=1
+
+# controller:
+controller=1
+
+# strips:
+strip1=lpd8806
+strip2=lpd8806
+strip3=lpd8806
+strip4=lpd8806
+strip5=lpd8806
+strip6=lpd8806
+strip7=lpd8806
+strip8=lpd8806
