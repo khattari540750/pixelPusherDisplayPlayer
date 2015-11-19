@@ -3,8 +3,7 @@ PixelPusher pp;
 ConfigReader cr;
 
 
-
-public void setup() {
+void setup() {
   
   // set window
   size(240, 16, P3D);
@@ -12,7 +11,6 @@ public void setup() {
   
   // read configuration file
   cr = new ConfigReader("config.txt");
-  
   
   // set pixel pusher
   pp = new PixelPusher();
@@ -25,8 +23,7 @@ public void setup() {
 }
 
 
-
-public void draw() {
+void draw() {
   if(sy.available()) {
     image(sy.getGraphics(), 0, 0, width, height);
   }
@@ -34,7 +31,6 @@ public void draw() {
 }
 
 
-
-public void dispose() {
+void dispose() {
   println("PixelPusherDisplayPlayer exit.");
 }

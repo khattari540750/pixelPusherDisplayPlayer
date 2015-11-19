@@ -4,12 +4,14 @@ import codeanticode.syphon.*;
 
 class Syphon {
   private SyphonClient client;
+  private PGraphics canvas;
   
   
   public Syphon(PApplet parent) {
     println("Available Syphon servers:");
     println(SyphonClient.listServers());
     this.client = new SyphonClient(parent);
+    canvas = new PGraphics();
   }
   
   
@@ -26,8 +28,6 @@ class Syphon {
   
   
   PGraphics getGraphics(){
-    PGraphics canvas;
-    canvas = new PGraphics();
     canvas = this.client.getGraphics(canvas);
     return canvas;
   }

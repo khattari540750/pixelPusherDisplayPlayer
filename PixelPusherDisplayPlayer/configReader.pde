@@ -35,23 +35,23 @@ class ConfigReader {
     BufferedReader reader;
     reader = createReader(this.fileName);
     String line;
-    boolean z = true;
+    boolean sentenceFlag = true;
  
-    while(z){
+    while(sentenceFlag){
       try{
         line = reader.readLine();
       } catch (IOException e){
         line = null;
       }
       if (line == null){
-        z = false;
-      }else{
+        sentenceFlag = false;
+      } else{
         String point[] = split( line,'=');
         if(point[0].equals("groupID") == true){
           groupID = int(point[1]);
-        }else if(point[0].equals("destAppName") == true){
+        } else if(point[0].equals("destAppName") == true){
           destAppName = point[1];
-        }else if(point[0].equals("destSyphonName") == true){
+        } else if(point[0].equals("destSyphonName") == true){
           destSyphonName = point[1];        
         }
       }   
