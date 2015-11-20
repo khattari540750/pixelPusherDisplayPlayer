@@ -3,6 +3,64 @@ PixelPusher pp;
 ConfigReader cr;
 
 
+void settings() {
+  size(240, 16, P2D);
+  PJOGL.profile = 1;
+}
+
+
+void setup() {
+    
+  // read configuration file
+  cr = new ConfigReader("config.txt");
+  
+  // set pixel pusher
+  pp = new PixelPusher();
+  pp.setGroupID(cr.getGroupID());
+  
+  // set syphon client
+  sy = new Syphon(this, cr.getDestAppName(), cr.getDestSyphonName());
+  
+  //canvas.beginDraw();
+  //canvas.background(0);
+  //canvas.endDraw();
+  //image(canvas, 0, 0);
+  
+  // set window size
+  surface.setResizable(true);
+}
+
+
+void draw() {
+  //if(pp.isChangeStrips()){
+  //  println(pp.getStripsNum());
+  //}
+  
+  if(sy.newFrame()) {
+    image(sy.getGraphics(), 0, 0, width, height);
+  }
+  pp.scrape();
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Syphon sy;
+PixelPusher pp;
+ConfigReader cr;
+
+
 void setup() {
   
   // set window
@@ -34,3 +92,4 @@ void draw() {
 void dispose() {
   println("PixelPusherDisplayPlayer exit.");
 }
+*/

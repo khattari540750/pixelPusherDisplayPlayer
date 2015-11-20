@@ -7,6 +7,50 @@ class Syphon {
   private PGraphics canvas;
   
   
+  public Syphon(PApplet parent, String appName, String serverName) {
+    this.client = new SyphonClient(parent, appName, serverName);
+    this.canvas = new PGraphics();
+    //this.canvas = createGraphics(240, 160, P3D);
+    //this.canvas = createGraphics(240, 160, P2D);
+  }
+  
+  
+  public boolean newFrame(){
+    return this.client.newFrame();
+  }
+  
+  
+  public PGraphics getGraphics(){
+    this.canvas = this.client.getGraphics(this.canvas);
+    return this.canvas;
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+import codeanticode.syphon.*;
+
+
+
+class Syphon {
+  private SyphonClient client;
+  private PGraphics canvas;
+  
+  
   public Syphon(PApplet parent) {
     println("Available Syphon servers:");
     println(SyphonClient.listServers());
@@ -32,3 +76,4 @@ class Syphon {
     return canvas;
   }
 };
+*/
