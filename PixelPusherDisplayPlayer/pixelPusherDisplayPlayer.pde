@@ -1,95 +1,32 @@
-Syphon sy;
-PixelPusher pp;
-ConfigReader cr;
+WindowManager wd;
+JsonReader jr;
+SyphonManager sy;
+PixelPusherManager pp;
 
 
 void settings() {
-  size(240, 16, P2D);
+  size(240,200, P2D);
   PJOGL.profile = 1;
 }
 
 
 void setup() {
-    
-  // read configuration file
-  cr = new ConfigReader("config.txt");
   
-  // set pixel pusher
-  pp = new PixelPusher();
-  pp.setGroupID(cr.getGroupID());
+  // read configration file
+  jr = new JsonReader("data/config.json");
   
-  // set syphon client
-  sy = new Syphon(this, cr.getDestAppName(), cr.getDestSyphonName());
+  // pixel pusher manager initialization
+  pp = new PixelPusherManager(jr.getGroupID());
   
-  //canvas.beginDraw();
-  //canvas.background(0);
-  //canvas.endDraw();
-  //image(canvas, 0, 0);
+  // syphon client manager initialization
+  sy = new SyphonManager(this, jr.getDestAppName(), jr.getDestSyphonName());
   
-  // set window size
-  surface.setResizable(true);
+  // window manager initialization
+  wd = new WindowManager(jr, pp, sy);
+  
 }
 
 
 void draw() {
-  //if(pp.isChangeStrips()){
-  //  println(pp.getStripsNum());
-  //}
-  
-  if(sy.newFrame()) {
-    image(sy.getGraphics(), 0, 0, width, height);
-  }
-  pp.scrape();
-  
-  
+  wd.update();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-Syphon sy;
-PixelPusher pp;
-ConfigReader cr;
-
-
-void setup() {
-  
-  // set window
-  size(240, 16, P3D);
-  background(0);
-  
-  // read configuration file
-  cr = new ConfigReader("config.txt");
-  
-  // set pixel pusher
-  pp = new PixelPusher();
-  pp.setGroupID(cr.getGroupID());
-  //pp.setGroupStripNum(16);
-  
-  // set syphon client
-  sy = new Syphon(this, cr.getDestAppName(), cr.getDestSyphonName());
-  //sy = new Syphon(this);
-}
-
-
-void draw() {
-  if(sy.available()) {
-    image(sy.getGraphics(), 0, 0, width, height);
-  }
-  pp.scrape();
-}
-
-
-void dispose() {
-  println("PixelPusherDisplayPlayer exit.");
-}
-*/

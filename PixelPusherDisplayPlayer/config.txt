@@ -1,3 +1,0 @@
-groupID=1
-destAppName=syphonTestDebug
-destSyphonName=Processing Syphon1
