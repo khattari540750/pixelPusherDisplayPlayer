@@ -1,7 +1,7 @@
 {
   "configureSettig": {
-      "foot": 6,
-      "head": "kabuto"
+      "defaultMode": 0,
+      "defaultStatus": -1
   },
 
   "pixelPusherDeviceSetting": [
@@ -24,13 +24,7 @@
       "groupID": 4,
       "destAppName": "MultipleServers",
       "destSyphonName": "Processing Syphon.3"
-    },
-    {
-      "groupID": 2,
-      "destAppName": "MultipleServers",
-      "destSyphonName": "Processing Syphon.0"
     }
-
   ]
 
 }
