@@ -1,7 +1,8 @@
-WindowManager wd;
 JsonReader jr;
-SyphonManager sy;
 PixelPusherManager pp;
+SyphonManager sy;
+ButtonManager bt;
+WindowManager wd;
 
 
 void settings() {
@@ -21,12 +22,20 @@ void setup() {
   // syphon client manager initialization
   sy = new SyphonManager(this, jr.getDestAppName(), jr.getDestSyphonName());
   
+  // button manager initialization
+  bt = new ButtonManager(jr.getDefaultStatus());
+  
   // window manager initialization
-  wd = new WindowManager(jr, pp, sy);
+  wd = new WindowManager(jr, pp, sy, bt);
   
 }
 
 
 void draw() {
   wd.update();
+}
+
+
+void mousePressed() {
+  bt.setMousePressedIvents();
 }

@@ -10,8 +10,9 @@ class JsonReader
   private String destSyphonName[];
   
   // configure setting
-  private int foot;
-  private String head;
+  private int defaultMode;
+  private int defaultStatus;
+  
   
 
   public JsonReader(String name) {
@@ -26,13 +27,13 @@ class JsonReader
   }
   
   
-  public int getFoot() {
-    return this.foot;
+  public int getDefaultMode() {
+    return this.defaultMode;
   }
   
   
-  public String getHead() {
-    return this.head;
+  public int getDefaultStatus() {
+    return this.defaultStatus;
   }
   
   
@@ -59,8 +60,9 @@ class JsonReader
     JSONObject json = loadJSONObject(this.fileName);
     
     JSONObject config = json.getJSONObject("configureSettig");
-    this.foot = config.getInt("foot");
-    this.head = config.getString("head");
+    this.defaultMode = config.getInt("defaultMode");
+    this.defaultStatus = config.getInt("defaultStatus");
+    //this.kaba = config.getString("head");
     
     JSONArray values = json.getJSONArray("pixelPusherDeviceSetting");
     this.deviceDataNum = values.size();
@@ -77,9 +79,8 @@ class JsonReader
   
   
   public void printData() {
-    println( "foot=" + this.foot +", " + 
-             "head=" + this.head);
-
+    println( "defaultMode=" + this.defaultMode +", " + 
+             "defaultStatus" + this.defaultStatus);
     for (int i = 0; i < this.deviceDataNum; i++) {
       println( "groupID=" + this.groupID[i] +", " + 
                "destAppName=" + this.destAppName[i] + ", " + 
