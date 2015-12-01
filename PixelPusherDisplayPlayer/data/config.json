@@ -11,9 +11,9 @@
       "destSyphonName": "Processing Syphon.1"
     },
     {
-      "groupID": 5,
-      "destAppName": "syphonTestDebug",
-      "destSyphonName": "Processing Syphon2"
+      "groupID": 2,
+      "destAppName": "MultipleServers",
+      "destSyphonName": "Processing Syphon.2"
     },
     {
       "groupID": 3,
@@ -22,8 +22,8 @@
     },
     {
       "groupID": 4,
-      "destAppName": "MultipleServers",
-      "destSyphonName": "Processing Syphon.3"
+      "destAppName": "syphonTestDebug",
+      "destSyphonName": "Processing Syphon2"
     }
   ]
 
