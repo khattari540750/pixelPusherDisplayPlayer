@@ -18,12 +18,12 @@
     {
       "groupID": 3,
       "destAppName": "MultipleServers",
-      "destSyphonName": "Processing Syphon.2"
+      "destSyphonName": "Processing Syphon.3"
     },
     {
       "groupID": 4,
       "destAppName": "syphonTestDebug",
-      "destSyphonName": "Processing Syphon2"
+      "destSyphonName": "Processing Syphon"
     }
   ]
 

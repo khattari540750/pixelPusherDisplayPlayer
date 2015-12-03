@@ -2,6 +2,7 @@ JsonReader jr;
 PixelPusherManager pp;
 SyphonManager sy;
 ButtonManager bt;
+DisplayImageManager di;
 WindowManager wd;
 
 
@@ -25,8 +26,11 @@ void setup() {
   // button manager initialization
   bt = new ButtonManager(jr.getDefaultStatus());
   
+  // displayImage manager initialization
+  di = new DisplayImageManager(jr.getDestSyphonName());
+  
   // window manager initialization
-  wd = new WindowManager(jr, pp, sy, bt);
+  wd = new WindowManager(jr, pp, sy, bt, di);
   
 }
 
