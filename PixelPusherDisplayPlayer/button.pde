@@ -12,13 +12,6 @@ class ButtonManager
   }
   
   
-  public void arrengeButtonsPos(int x, int y, int w, int h) {
-    play.setPos(x+w/16, y+h/6, w/4, h*2/3);
-    turnOff.setPos(x+2*w/16+w/4, y+h/6, w/4, h*2/3);
-    turnOn.setPos(x+3*w/16+2*w/4, y+h/6, w/4, h*2/3);
-  }
-  
-  
   public void update() {
     switch(this.status){
       case -1:
@@ -37,11 +30,16 @@ class ButtonManager
         turnOn.setSelected(true);
         break;
     }
- 
-    
     play.update();
     turnOff.update();
     turnOn.update();
+  }
+  
+  
+  public void arrengeButtonsPos(float x, float y, float w, float h) {
+    play.setPos(x+w/16, y+h/6, w/4, h*2/3);
+    turnOff.setPos(x+2*w/16+w/4, y+h/6, w/4, h*2/3);
+    turnOn.setPos(x+3*w/16+2*w/4, y+h/6, w/4, h*2/3);
   }
   
   
@@ -92,13 +90,13 @@ class ButtonManager
 
 class Button
 {
-  private int posX, posY;
-  private int sizeW, sizeH;
+  private float posX, posY;
+  private float sizeW, sizeH;
   private String name;
   private color normalColor, selectedColor;
   private color borderColor, textColor;
   private boolean mouseOver;
-  private int textSize;
+  private float textSize;
   private boolean selected;
   
   
@@ -114,7 +112,7 @@ class Button
   }
   
   
-  public Button(int x, int y, int w, int h, String n) {
+  public Button(float x, float y, float w, float h, String n) {
     this.posX = x;
     this.posY = y;
     this.sizeW = w;
@@ -140,7 +138,7 @@ class Button
     this.name = n;
   }
   
-  public void setPos(int x, int y, int w, int h) {
+  public void setPos(float x, float y, float w, float h) {
     this.posX = x;
     this.posY = y;
     this.sizeW = w;
@@ -193,7 +191,7 @@ class Button
   }
 
   
-  private boolean mouseOver(int x, int y, int width, int height) {
+  private boolean mouseOver(float x, float y, float width, float height) {
     if (mouseX >= x && mouseX <= x+width && 
         mouseY >= y && mouseY <= y+height) {
       return true;

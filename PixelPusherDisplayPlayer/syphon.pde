@@ -1,6 +1,7 @@
 import codeanticode.syphon.*;
 
 
+
 class SyphonManager
 {
   private Syphon sy[];

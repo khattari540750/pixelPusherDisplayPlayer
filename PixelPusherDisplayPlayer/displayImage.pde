@@ -3,6 +3,7 @@ class DisplayImageManager
   private DisplayImageName din[];
   private DisplayImage di[];
   private int num;
+  private float requireW, requireH;
   
   
   public DisplayImageManager(String imageNames[]) {
@@ -26,10 +27,11 @@ class DisplayImageManager
   }
   
   
-  public boolean arrengePos(int x, int y, int w, int h) {
-    int xn = x; 
-    int yn = y;
-    int hn=0;
+  public boolean arrengePos(float x, float y, float w, float h) {
+    float xn = x; 
+    float yn = y;
+    float hn=0;
+    float calcW[] = new float[this.num];
     for(int i=0; i<this.num; i++){
       this.din[i].setPos(xn, yn);
       this.din[i+this.num].setPos(xn+w-this.din[i+this.num].getSizeW(), yn);
@@ -38,9 +40,25 @@ class DisplayImageManager
       yn += this.di[i].getSizeH();
       hn = yn;
       yn += 10;
+      calcW[i] = this.di[i].getSizeW();
     }
-    if( h < hn ) return false;
-    return true;
+    
+    boolean wFlag = false;
+    this.requireW = max(calcW);
+    if(this.requireW < w){
+      this.requireW = w;
+      wFlag = true;
+    }
+    
+    boolean hFlag = false;
+    this.requireH = hn;
+    if( this.requireH < h ){
+      this.requireH = h;
+      hFlag = true;
+    }
+    
+    if(wFlag && hFlag) return true;
+    return false;
   }
   
   
@@ -78,6 +96,16 @@ class DisplayImageManager
     return this.di[dispNum].getSizeH();
   }
   
+  
+  public float getRequireW() {
+    return this.requireW;
+  }
+  
+  
+  public float getRequireH() {
+    return this.requireH;
+  }
+
 };
 
 
