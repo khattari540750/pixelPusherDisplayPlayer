@@ -25,10 +25,10 @@ class WindowManager
     this.igA.setBackgroundColor(color(200, 200, 200));
     
     this.buttonSizeH = 45;
-    this.igA.setImageSize(0, 240, 8);
-    this.igA.setImageSize(1, 240, 8);
-    this.igA.setImageSize(2, 240, 8);
-    this.igA.setImageSize(3, 240, 8);
+    this.igA.setImageSize(0, 240, 16);
+    this.igA.setImageSize(1, 240, 16);
+    this.igA.setImageSize(2, 240, 16);
+    this.igA.setImageSize(3, 240, 16);
     this.igA.setAreaSize(0, 0, 240, 200);
     
     this.btA.setArea(0,200-this.buttonSizeH,240,this.buttonSizeH);
