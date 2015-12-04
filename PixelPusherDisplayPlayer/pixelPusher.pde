@@ -12,6 +12,7 @@ class PixelPusherManager
   private PixelPusher pp[];
   private int stripsNum[];
   private int stripLength[];
+  private float x[], y[], w[], h[];
   
   
   public PixelPusherManager(int groupIDs[]) {
@@ -24,17 +25,21 @@ class PixelPusherManager
       this.pp[i] = new PixelPusher(groupIDs[i]);
     }
     
+    this.x = new float[groupIDs.length];
+    this.y = new float[groupIDs.length];
+    this.w = new float[groupIDs.length];
+    this.h = new float[groupIDs.length];
     this.stripsNum = new int[groupIDs.length];
     this.stripLength = new int[groupIDs.length];
   }
   
   
-  public void update(int x[], int y[], int w[], int h[]) {
+  public void update() {
     loadPixels();
     if(this.observer.hasStrips) {
       this.registry.startPushing();
       for(int i=0; i<pp.length; i++){
-        this.pp[i].scrape(this.registry, x[i], y[i], w[i], h[i]);
+        this.pp[i].scrape(this.registry, this.x[i], this.y[i], this.w[i], this.h[i]);
         this.stripsNum[i] = this.pp[i].getStripsNum();
         this.stripLength[i] = this.pp[i].getStripsLength();
       }
@@ -42,13 +47,21 @@ class PixelPusherManager
   }
   
   
-  public int[] getStripsNum() {
-    return this.stripsNum;
+  public void setArea(int dispNum, float x, float y, float w, float h) {
+    this.x[dispNum] = x;
+    this.y[dispNum] = y;
+    this.w[dispNum] = w;
+    this.h[dispNum] = h;
   }
   
   
-  public int[] getStripLength() {
-    return this.stripLength;
+  public int getStripsNum(int dispNum) {
+    return this.stripsNum[dispNum];
+  }
+  
+  
+  public int getStripLength(int dispNum) {
+    return this.stripLength[dispNum];
   }
   
 };
@@ -69,12 +82,12 @@ class PixelPusher
   }
   
   
-  public void scrape(DeviceRegistry registry, int x, int y, int w, int h) {
+  public void scrape(DeviceRegistry registry, float x, float y, float w, float h) {
     List<Strip> strips = registry.getStrips(this.groupID);
     if (strips.size() > 0) {
       // scale calc
-      float xscale = float(w) / float(strips.get(0).getLength());
-      float yscale = float(h) / float(strips.size());
+      float xscale = w / float(strips.get(0).getLength());
+      float yscale = h / float(strips.size());
       
       // get strips infomation
       this.stripsNum = strips.size();
@@ -84,7 +97,7 @@ class PixelPusher
       int stripy = 0;
       for (Strip strip : strips) {
         for (int stripx = 0; stripx < strip.getLength(); stripx++) {
-          color c = get(int(x + float(stripx)*xscale), y + int(float(stripy)*yscale));
+          color c = get(int(x + float(stripx)*xscale), int(y +float(stripy)*yscale));
           strip.setPixel(c, stripx);
         }
         stripy++;
