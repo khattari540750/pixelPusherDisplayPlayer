@@ -98,6 +98,7 @@ class PixelPusher
       for (Strip strip : strips) {
         for (int stripx = 0; stripx < strip.getLength(); stripx++) {
           color c = get(int(x + float(stripx)*xscale), int(y +float(stripy)*yscale));
+          c = this.removeNoise(c);
           strip.setPixel(c, stripx);
         }
         stripy++;
@@ -113,6 +114,13 @@ class PixelPusher
   
   public int getStripsLength() {
     return this.stripLength;
+  }
+  
+  private color removeNoise(color c) {
+     if(red(c) + green(c) + blue(c) < 20.0) {
+       return 0;
+     }
+     return c;
   }
   
 };
