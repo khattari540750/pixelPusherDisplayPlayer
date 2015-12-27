@@ -15,7 +15,7 @@ class PixelPusherManager
   private float x[], y[], w[], h[];
   
   
-  public PixelPusherManager(int groupIDs[]) {
+  public PixelPusherManager(int groupIDs[], float noiseR, float noiseG, float noiseB) {
     this.registry = new DeviceRegistry();
     this.observer = new PixelPusherObserver();
     this.registry.addObserver(this.observer);
@@ -23,6 +23,7 @@ class PixelPusherManager
     this.pp = new PixelPusher[groupIDs.length];
     for(int i=0; i<groupIDs.length; i++){
       this.pp[i] = new PixelPusher(groupIDs[i]);
+      this.pp[i].setNoiseRGB(noiseR, noiseG, noiseB);
     }
     
     this.x = new float[groupIDs.length];
@@ -73,6 +74,7 @@ class PixelPusher
   private int groupID;
   private int stripsNum;
   private int stripLength;
+  private float noiseR, noiseG, noiseB;
   
   
   public PixelPusher(int id) {
@@ -98,6 +100,7 @@ class PixelPusher
       for (Strip strip : strips) {
         for (int stripx = 0; stripx < strip.getLength(); stripx++) {
           color c = get(int(x + float(stripx)*xscale), int(y +float(stripy)*yscale));
+          c = this.removeNoise(c);
           strip.setPixel(c, stripx);
         }
         stripy++;
@@ -113,6 +116,24 @@ class PixelPusher
   
   public int getStripsLength() {
     return this.stripLength;
+  }
+  
+  
+  public void setNoiseRGB(float r, float g, float b) {
+    this.noiseR = r;
+    this.noiseG = g;
+    this.noiseB = b;
+  }
+  
+  
+  private color removeNoise(color c) {
+     //if(red(c) + green(c) + blue(c) < 20.0) {
+     //  return 0;
+     //}
+     if(red(c) < this.noiseR && green(c) < this.noiseG && blue(c) < this.noiseB){
+       return 0;
+     }
+     return c;
   }
   
 };

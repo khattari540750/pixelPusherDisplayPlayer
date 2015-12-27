@@ -12,6 +12,9 @@ class JsonReader
   // configure setting
   private int defaultMode;
   private int defaultStatus;
+  private float noiseR;
+  private float noiseG;
+  private float noiseB;
   
   
 
@@ -34,6 +37,21 @@ class JsonReader
   
   public int getDefaultStatus() {
     return this.defaultStatus;
+  }
+  
+  
+  public float getNoiseR() {
+    return this.noiseR;
+  }
+  
+  
+  public float getNoiseG() {
+    return this.noiseG;
+  }
+  
+  
+  public float getNoiseB() {
+    return this.noiseB;
   }
   
   
@@ -62,6 +80,9 @@ class JsonReader
     JSONObject config = json.getJSONObject("configureSettig");
     this.defaultMode = config.getInt("defaultMode");
     this.defaultStatus = config.getInt("defaultStatus");
+    this.noiseR = config.getFloat("noiseR");
+    this.noiseG = config.getFloat("noiseG");
+    this.noiseB = config.getFloat("noiseB");
     //this.kaba = config.getString("head");
     
     JSONArray values = json.getJSONArray("pixelPusherDeviceSetting");

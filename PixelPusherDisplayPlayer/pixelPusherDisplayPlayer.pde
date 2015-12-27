@@ -18,7 +18,7 @@ void setup() {
   jr = new JsonReader("data/config.json");
   
   // pixel pusher manager initialization
-  pp = new PixelPusherManager(jr.getGroupID());
+  pp = new PixelPusherManager(jr.getGroupID(), jr.getNoiseR(), jr.getNoiseG(), jr.getNoiseB());
   
   // syphon client manager initialization
   sy = new SyphonManager(this, jr.getDestAppName(), jr.getDestSyphonName());
