@@ -1,0 +1,34 @@
+{
+  "configureSettig": {
+      "defaultMode": 6,
+      "defaultStatus": 0,
+      "noiseR": 5,
+      "noiseG": 5,
+      "noiseB": 5
+  },
+
+  "pixelPusherDeviceSetting": [
+    {
+      "groupID": 1,
+      "destAppName": "CDJ2015_Simulator",
+      "destSyphonName": "ofServer1"
+    },
+    {
+      "groupID": 2,
+      "destAppName": "CDJ2015_Simulator",
+      "destSyphonName": "ofServer2"
+    },
+    {
+      "groupID": 3,
+      "destAppName": "CDJ2015_Simulator",
+      "destSyphonName": "ofServer3"
+    },
+    {
+      "groupID": 4,
+      "destAppName": "MultipleServers",
+      "destSyphonName": "ofServer"
+    }
+
+  ]
+
+}
