@@ -10,23 +10,23 @@
   "pixelPusherDeviceSetting": [
     {
       "groupID": 1,
-      "destAppName": "CDJ2015_Simulator",
-      "destSyphonName": "ofServer1"
+      "destAppName": "App",
+      "destSyphonName": "Server1"
     },
     {
       "groupID": 2,
-      "destAppName": "CDJ2015_Simulator",
-      "destSyphonName": "ofServer2"
+      "destAppName": "App",
+      "destSyphonName": "Server2"
     },
     {
       "groupID": 3,
-      "destAppName": "CDJ2015_Simulator",
-      "destSyphonName": "ofServer3"
+      "destAppName": "App",
+      "destSyphonName": "Server3"
     },
     {
       "groupID": 4,
       "destAppName": "MultipleServers",
-      "destSyphonName": "ofServer"
+      "destSyphonName": "Server"
     }
 
   ]
